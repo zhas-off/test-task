@@ -27,5 +27,5 @@ func main() {
 	sum := util.Sum("pkg/data/data.json", blockSize, *goroutinesNum)
 
 	// Выводим результат
-	fmt.Printf("Total sum: %d\n", sum)
+	fmt.Printf("Итоговая сумма: %d\n", sum)
 }
