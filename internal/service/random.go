@@ -29,7 +29,7 @@ func Generate(fileName string, number int) error {
 	// Создаем JSON файл
 	file, err := os.Create(fileName)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	defer file.Close()
 
@@ -37,7 +37,7 @@ func Generate(fileName string, number int) error {
 	encoder := json.NewEncoder(file)
 	err = encoder.Encode(data)
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	fmt.Println("Готово!")

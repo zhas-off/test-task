@@ -4,17 +4,14 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/zhas-off/test-task/pkg/util"
+	service "github.com/zhas-off/test-task/internal/service"
 )
 
 func main() {
 	// Закомментировал кусок кода который создает случайные
 	// числа в массиве на количество который вы укажете для проверки кода
 
-	// err := util.Generate("pkg/data/data.json", 1000)
-	// if err != nil {
-	// 	panic(err)
-	// }
+	// service.Generate("pkg/data/data.json", 1000000)
 
 	// Определяем флаг с именем "goroutines" и с типом int
 	goroutinesNum := flag.Int("goroutines", 2, "number of goroutines")
@@ -24,7 +21,7 @@ func main() {
 
 	// Создаем количество блоков на которую хотим поделить
 	blockSize := 100
-	sum := util.Sum("pkg/data/data.json", blockSize, *goroutinesNum)
+	sum, _ := service.Sum("pkg/data/data.json", blockSize, *goroutinesNum)
 
 	// Выводим результат
 	fmt.Printf("Итоговая сумма: %d\n", sum)

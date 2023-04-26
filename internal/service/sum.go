@@ -9,11 +9,11 @@ import (
 	"github.com/zhas-off/test-task/pkg/models"
 )
 
-func Sum(fileName string, blockSize int, goroutinesNum int) int {
+func Sum(fileName string, blockSize int, goroutinesNum int) (int, error) {
 	// Читаем данные из файла в срез []Object
 	file, err := os.Open(fileName)
 	if err != nil {
-		panic(err)
+		return 0, err
 	}
 	defer file.Close()
 
@@ -25,7 +25,7 @@ func Sum(fileName string, blockSize int, goroutinesNum int) int {
 		if err := decoder.Decode(&objects); err == io.EOF {
 			break
 		} else if err != nil {
-			panic(err)
+			return 0, err
 		}
 	}
 
@@ -63,5 +63,5 @@ func Sum(fileName string, blockSize int, goroutinesNum int) int {
 
 	wg.Wait()
 
-	return sum
+	return sum, nil
 }
